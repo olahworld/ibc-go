@@ -13,6 +13,30 @@ const (
 	invalidLargeAmount = "115792089237316195423570985008687907853269984665640564039457584007913129639936" // 2^256
 )
 
+func TestPacketDataUnknownMemoField(t *testing.T) {
+	testPacketDataWithMetadata := FungibleTokenPacketDataWithMetadata{
+		Denom:    "stake",
+		Amount:   "1000",
+		Sender:   "send",
+		Receiver: "recv",
+	}
+
+	bz, err := ModuleCdc.MarshalJSON(&testPacketDataWithMetadata)
+	if err != nil {
+		t.Error(err)
+	}
+
+	t.Log(string(bz))
+
+	// test packet data json with empty memo field
+	// testPacketDataJSON := "{\"denom\":\"stake\",\"amount\":\"1000\",\"sender\":\"send\",\"receiver\":\"recv\",\"memo\":null"
+
+	var packetData FungibleTokenPacketData
+	if err := ModuleCdc.UnmarshalJSON(bz, &packetData); err != nil {
+		t.Error(err)
+	}
+}
+
 // TestFungibleTokenPacketDataValidateBasic tests ValidateBasic for FungibleTokenPacketData
 func TestFungibleTokenPacketDataValidateBasic(t *testing.T) {
 	testCases := []struct {

@@ -156,6 +156,7 @@
   
 - [ibc/applications/transfer/v2/packet.proto](#ibc/applications/transfer/v2/packet.proto)
     - [FungibleTokenPacketData](#ibc.applications.transfer.v2.FungibleTokenPacketData)
+    - [FungibleTokenPacketDataWithMetadata](#ibc.applications.transfer.v2.FungibleTokenPacketDataWithMetadata)
   
 - [ibc/core/channel/v1/genesis.proto](#ibc/core/channel/v1/genesis.proto)
     - [GenesisState](#ibc.core.channel.v1.GenesisState)
@@ -2318,6 +2319,25 @@ https://github.com/cosmos/ibc/tree/master/spec/app/ics-020-fungible-token-transf
 | `sender` | [string](#string) |  | the sender address |
 | `receiver` | [string](#string) |  | the recipient address on the destination chain |
 | `memo` | [string](#string) |  | optional memo |
+
+
+
+
+
+
+<a name="ibc.applications.transfer.v2.FungibleTokenPacketDataWithMetadata"></a>
+
+### FungibleTokenPacketDataWithMetadata
+FungibleTokenPacketDataWithMetadata --
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `denom` | [string](#string) |  | the token denomination to be transferred |
+| `amount` | [string](#string) |  | the token amount to be transferred |
+| `sender` | [string](#string) |  | the sender address |
+| `receiver` | [string](#string) |  | the recipient address on the destination chain |
+| `metadata` | [bytes](#bytes) |  | optional metadata |
 
 
 
