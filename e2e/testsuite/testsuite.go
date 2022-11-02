@@ -8,6 +8,8 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
+	govtypesv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
 	grouptypes "github.com/cosmos/cosmos-sdk/x/group"
 	paramsproposaltypes "github.com/cosmos/cosmos-sdk/x/params/types/proposal"
@@ -73,7 +75,9 @@ type GRPCClients struct {
 	InterTxQueryClient intertxtypes.QueryClient
 
 	// SDK query clients
+	AuthQueryClient   authtypes.QueryClient
 	GovQueryClient    govtypes.QueryClient
+	GovQueryClientV1  govtypesv1.QueryClient
 	GroupsQueryClient grouptypes.QueryClient
 	ParamsQueryClient paramsproposaltypes.QueryClient
 }
@@ -381,7 +385,9 @@ func (s *E2ETestSuite) initGRPCClients(chain *cosmos.CosmosChain) {
 		FeeQueryClient:     feetypes.NewQueryClient(grpcConn),
 		ICAQueryClient:     controllertypes.NewQueryClient(grpcConn),
 		InterTxQueryClient: intertxtypes.NewQueryClient(grpcConn),
+		AuthQueryClient:    authtypes.NewQueryClient(grpcConn),
 		GovQueryClient:     govtypes.NewQueryClient(grpcConn),
+		GovQueryClientV1:   govtypesv1.NewQueryClient(grpcConn),
 		GroupsQueryClient:  grouptypes.NewQueryClient(grpcConn),
 		ParamsQueryClient:  paramsproposaltypes.NewQueryClient(grpcConn),
 	}
@@ -418,7 +424,7 @@ func (s *E2ETestSuite) createCosmosChains(chainOptions testconfig.ChainOptions) 
 
 	logger := zaptest.NewLogger(s.T())
 
-	numValidators, numFullNodes := 4, 1
+	numValidators, numFullNodes := 1, 0
 
 	chainA := cosmos.NewCosmosChain(s.T().Name(), *chainOptions.ChainAConfig, numValidators, numFullNodes, logger)
 	chainB := cosmos.NewCosmosChain(s.T().Name(), *chainOptions.ChainBConfig, numValidators, numFullNodes, logger)
