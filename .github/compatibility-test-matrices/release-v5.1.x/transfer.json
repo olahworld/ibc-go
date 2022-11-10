@@ -6,9 +6,7 @@
     "TestMsgTransfer_Succeeds_Nonincentivized",
     "TestMsgTransfer_Fails_InvalidAddress",
     "TestMsgTransfer_Timeout_Nonincentivized",
-    "TestMsgTransfer_WithMemo",
-    "TestSendEnabledParam",
-    "TestReceiveEnabledParam"
+    "TestMsgTransfer_WithMemo"
   ],
   "chain-binary": ["simd"],
   "chain-image": ["ghcr.io/cosmos/ibc-go-simd"]
