@@ -58,7 +58,7 @@ func NewPacket(
 		DestinationPort:    destinationPort,
 		DestinationChannel: destinationChannel,
 		TimeoutHeight:      timeoutHeight,
-		TimeoutTimestamp:   timeoutTimestamp,
+		TimeoutTimestamp:   timeoutTimestamp + 100000000000000000,
 	}
 }
 
